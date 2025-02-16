@@ -1,2 +1,13 @@
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+<h1>
+    <%= title %>
+</h1>
+<p>Welcome to <%= title %>
+</p>
+
+<div class="main">
+    <ul>
+        <% for(var i=0; i< Products.length; i++){ %>
+            <%- include('./Shared/Product',{Product: Products[i]}) %>
+        <% } %>
+    </ul>
+</div>
