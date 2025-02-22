@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="site-divider px-3" style="padding-top: .7rem !important; padding-bottom: .7rem !important;">
+        <div class="row">
+            <div class="col-5 mb-2 mb-md-0"></div>
+            <div class="col-2 mb-2 mb-md-0 text-center">
+                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+                    <svg class="bi" width="80" height="64" role="img" aria-label="Bootstrap" style="fill:#163391;">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+            </div>
+            <div class="col-5 mb-2 mb-md-0">
+                <div class="page-options font-normal color-normal" aria-label="Zmiana wielkości czcionki:"
+                    id="page-options">
+                    <button class="font-normal" onclick={setSizeCookie('font-normal')} data-placement="right"
+                        title="Zmień wielkość czcionki na normalną"
+                        aria-label="Zmień wielkość czcionki na normalną">A</button>
+                    <button class="font-bigger" onclick={setSizeCookie('font-bigger')} data-placement="right"
+                        title="Zmień wielkość czcionki na większą"
+                        aria-label="Zmień wielkość czcionki na większą">A</button>
+                    <button class="font-biggest" onclick={setSizeCookie('font-biggest')} data-placement="right"
+                        title="Zmień wielkość czcionki na dużą" aria-label="Zmień wielkość czcionki na dużą">A</button>
+                    <button class="change-version contrast-one contrast-version"
+                        onclick={setColorCookie('color-normal')} data-placement="right" title="kontrast domyślny"
+                        aria-label="kontrast domyślny">A</button>
+                    <button class="change-version contrast-two contrast-version"
+                        onclick={setColorCookie('color-contrast')} data-placement="right" title="kontrast czarno-biały"
+                        aria-label="kontrast czarno-biały">A</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

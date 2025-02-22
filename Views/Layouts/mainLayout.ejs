@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <%- include('./Partials/head') %>
-
     <body>
+        <%- include('./Partials/wcag_helper') %>
         <main>
             <%- include('./Partials/header') %>
                 <div class="container">
                     <%- body %>
                 </div>
         </main>
-
+        <%- include('./Partials/cookiePolicy') %>
         <%- include('./Partials/footer') %>
     </body>
-
+<%- include('./Partials/mainScripts') %>
 </html>

@@ -1,8 +1,74 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
+
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+#cookiePolicyNewApp {
+  display: none;
+}
+
+
+
+.page-options {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#page-options {
+  /* margin: 0.3rem auto; */
+}
+
+#page-options .ui.basic.segment {
+  padding: 0;
+}
+
+#page-options button {
+  background: none;
+  border: none;
+  margin-left: 0.2rem;
+  cursor: pointer;
+}
+
+#page-options button[class*="font-"]:hover,
+#page-options button[class*="font-"]:focus {
+  text-decoration: underline;
+  color: #517fce;
+}
+
+#page-options button.font-normal {
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+#page-options button.font-bigger {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+#page-options button.font-biggest {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+#page-options button.contrast-version {
+  /* padding: 0 0.3em; */
+  font-size: 0.9rem;
+  border: 1px solid #000;
+}
+
+#page-options button.contrast-version.contrast-one {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+#page-options button.contrast-version.contrast-two {
+  background: #000;
+  color: #fff;
 }
