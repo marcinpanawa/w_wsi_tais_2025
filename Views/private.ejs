@@ -1,0 +1,15 @@
+<h1>
+    <%= title %>
+</h1>
+<p>Welcome to <%= title %>
+</p>
+<% if (locals.error) { %>
+    <p style="color: red;">
+        <%= error %>
+    </p>
+    <% } %>
+        <div class="container">
+            <p>This page is only available to logged in users.</p>
+            <a href="/logout">Log out</a>
+
+        </div>

@@ -1,0 +1,59 @@
+<h1>
+  <%= title %>
+</h1>
+<p>Welcome to <%= title %>
+</p>
+
+<div class="container">
+  <div id="targetDiv" class="row row-cols-3 g-3">
+  </div>
+</div>
+
+
+
+
+<script>
+
+  async function getData() {
+    const response = await fetch("/getAllItems");
+    const res = response.json();
+    return res;
+  }
+
+  const promise1 = getData();
+  const promise2 = getData();
+  const promise3 = getData();
+
+  Promise.all([promise1, promise2, promise3]).then((values) => {
+    console.log('values', values);
+    const products = values[0].response;
+
+    const targetDiv = document.getElementById("targetDiv");
+
+    products.forEach(element => {
+      targetDiv.innerHTML += `
+
+    <div class="col">
+    <div class="card shadow-sm">
+      <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <title>${element.name}</title>
+        <rect width="100%" height="100%" fill="#55595c"></rect>
+        <text x="50%" y="50%" fill="#eceeef" dy=".3em">${element.name.charAt(0)}</text></svg>
+      <div class="card-body">
+        <p class="card-title">${element.name}</p>
+        <p class="card-text">${element.description}</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outline-secondary" onClick="{alert('aaa')}">View</button>
+            <a type="button" class="button btn btn-sm btn-outline-secondary" href="/store/${element._id}">Add to cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+`});
+
+
+  })
+
+</script>

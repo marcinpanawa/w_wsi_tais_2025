@@ -30,24 +30,24 @@
         if (!getCookie('cookiePolicyNewApp')) document.getElementById('cookiePolicyNewApp').style.display = 'inherit';
     }
 
-    setHtmlClass = () => {
+    const setHtmlClass = () => {
         const colorCookie = getCookie("colortheme") || "color-normal";
         const sizeCookie = getCookie("sizetheme") || "font-normal";
         var appClass = sizeCookie + " " + colorCookie;
         document.querySelector("html").className = appClass;
-        document.getElementById('main').className = appClass;
 
     }
 
-    setSizeCookie = (size) => {
+    const setSizeCookie = (size) => {
         setCookie('sizetheme', size, 30);
         setHtmlClass();
     }
 
-    setColorCookie = (color) => {
+    const setColorCookie = (color) => {
         setCookie('colortheme', color, 30)
         setHtmlClass();
     }
 
     checkSessionCookie();
+    setHtmlClass();
 </script>

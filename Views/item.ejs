@@ -1,0 +1,11 @@
+<h1>
+    <%= title %>
+</h1>
+<p>Welcome to <%= title %>
+</p>
+
+<div class="container">
+    <div class="row row-cols-12">
+            <%- include('./Shared/ProductDetails',{Product: Product}) %>
+    </div>
+</div>    

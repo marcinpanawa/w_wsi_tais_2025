@@ -9,8 +9,8 @@
         <p class="card-text"><%= Product.description %></p>
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
-            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Add to cart</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" onClick="{alert('aaa')}">Add to cart</button>
+            <a type="button" class="button btn btn-sm btn-outline-secondary" href="/store/<%= Product._id %>">View</a>
           </div>
         </div>
       </div>
