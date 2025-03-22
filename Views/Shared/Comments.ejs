@@ -6,20 +6,8 @@
         </div>
         <% } %>
             <% for(var i=0; i< Comments.length; i++){ %>
-                <div class="d-flex text-body-secondary pt-3 ">
-                    <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32" height="32"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                            dy=".3em">32x32</text>
-                    </svg>
-                    <p class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                        <strong class="d-block text-gray-dark">@<%= Comments[i].user_id.username %></strong>
-                        <%= Comments[i].text %>
-                    </p>
-                </div>
-                <% } %>
+                <%- include('./Comment',{Comment: Comments[i]}) %>
+        <% } %>
 </div>
 
 <% if (session && session.userId) { %>
@@ -27,13 +15,11 @@
         <div class="card">
             <div class="card-body">
                 <h1>Form with Comment and Validation</h1>
-
                 <form id="myForm" action="/comments" method="POST">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name:</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
                     </div>
-
                     <div class="mb-3">
                         <label for="email" class="form-label">Email:</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
@@ -43,21 +29,16 @@
                         <input type="text" hidden class="hidden" id="product_id" name="product_id"
                             value="<%= itemId %>" />
                     </div>
-
-
-
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone:</label>
                         <input type="tel" class="form-control" id="phone" name="phone"
                             placeholder="Enter your phone number" required>
                     </div>
-
                     <div class="mb-3">
                         <label for="comment" class="form-label">Comment:</label>
                         <textarea class="form-control" id="comment" name="comment" rows="3"
                             placeholder="Enter your comment" required></textarea>
                     </div>
-
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
@@ -103,10 +84,10 @@
                             console.log("Form is valid and ready to submit!");
 
                             // Simulate a successful submission for demonstration
-                            $("#successMessage").fadeIn();
-                            setTimeout(function () {
-                                $("#successMessage").fadeOut();
-                            }, 3000);
+                            // $("#successMessage").fadeIn();
+                            // setTimeout(function () {
+                            //     $("#successMessage").fadeOut();
+                            // }, 3000);
 
                             form.submit();
                             // Reset the form (optional)
