@@ -1,19 +1,69 @@
-
-<div class=" p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-  <div class="col-md-6 p-lg-5 mx-auto my-5">
-    <h1 class="display-3 fw-bold"> <%= Product.name %></h1>
-    <h3 class="fw-normal text-muted mb-3"><%= Product.description %></h3>
+<div class="pt-3 py-3 p-md-5 m-md-3 text-center bg-body-tertiary">
+  <div class="col-md-6 mx-auto ">
+    <h1 class="display-3 fw-bold">
+      <%= Product.name %>
+    </h1>
+    <h3 class="fw-normal text-muted mb-3">
+      <%= Product.description %>
+    </h3>
     <div class="d-flex gap-3 justify-content-center lead fw-normal">
       <a class="icon-link" href="#">
         Learn more
-        <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+        <svg class="bi">
+          <use xlink:href="#chevron-right"></use>
+        </svg>
       </a>
       <a class="icon-link" href="#">
         Buy
-        <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+        <svg class="bi">
+          <use xlink:href="#chevron-right"></use>
+        </svg>
       </a>
     </div>
   </div>
-  <div class="product-device shadow-sm d-none d-md-block"></div>
-  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  <%- include('./Comments',{Comments: Comments}) %>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
 </div>
+
+
+<script>
+
+  function twojaFunkcja() {
+
+    console.log('Funkcja została wykonana!');
+  }
+
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    // Tutaj umieść kod, który ma się wykonać po załadowaniu dokumentu
+    console.log('Dokument został załadowany!');
+    twojaFunkcja(); // Wywołaj swoją funkcję
+  });
+
+  // Read the query parameter from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const status = urlParams.get('commentStatus');
+
+  if (status === 'ok') {
+    // Display a message based on the status
+    Swal.fire({
+      title: "Good job, comment was added!",
+      text: status,
+      icon: "success"
+    }).then((okay) => {
+
+      window.location.href = window.location.origin + window.location.pathname;
+
+          });
+  } else if (status === 'error') {
+    // Display a message based on the status
+    Swal.fire({
+      title: ":( There was an error",
+      text: status,
+      icon: "Error"
+    });
+
+  }
+
+</script>

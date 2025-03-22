@@ -5,19 +5,27 @@
 <% if (locals.error) { %>
   <p style="color: red;"><%= error %></p>
 <% } %>
-    <div class="container-fluid">
+    <div class="container-fluid my-5">
       <% if (session.userName) { %>
-        <h1>Witaj, <%= session.userName %>!</h1>
+        <h1 class="h3 mb-3 fw-normal">Witaj, <%= session.userName %>!</h1>
         <a href="/logout">Wyloguj się</a>
       <% } else { %>
+        <main class="form-signin w-100 m-auto">
       <form action="/login" method="POST">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-      </form>
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <div class="form-floating">
+        <label for="username">Username:</label>
+        <input class="form-control" type="text" id="username" name="username" placeholder="name@example.com" required>
+      </div>
+      <div class="form-floating">
+        <label for="password">Password:</label>
+        <input class="form-control" type="password" id="password" name="password" placeholder="name@example.com" required>
+        <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+      </div>
       <p>Don't have an account? <a href="/register">Sign up</a></p>
+      </form>
+    </main>
+      
       <% } %>
     </div>
 </div>    

@@ -4,6 +4,7 @@ const mainController = require('../Controllers/mainController');
 const storeController = require('../Controllers/storeController');
 const taskController = require('../Controllers/taskController');
 const userController = require('../Controllers/userController');
+const commentController = require('../Controllers/commentController');
 
 // Middleware sprawdzający autentykację
 const requireLogin = (req, res, next) => {
@@ -29,4 +30,6 @@ router.get('/logout', userController.logout);
 router.get('/register', userController.register);
 router.post('/register', userController.register);
 router.get('/private', requireLogin, userController.private);
+router.post('/comments', requireLogin, commentController.addComment);
+router.get('/products/:product_id/comments', commentController.getCommentsByProductId);
 module.exports = router;
