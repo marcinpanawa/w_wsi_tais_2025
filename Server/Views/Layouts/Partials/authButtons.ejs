@@ -1,0 +1,8 @@
+<div class="col-md-3 text-end">
+    <% if (session && session.userId) { %>
+      <a class="button btn btn-outline-danger me-2" href="/logout">Logout <%= session.userName %></a>
+      <% } else  {%>
+    <a class="button btn btn-outline-primary me-2" href="/login">Login</a>
+    <a class="button btn btn-primary me-2" href="/register">Sign-up</a>
+    <% } %>
+  </div>
