@@ -7,6 +7,6 @@ import RouteApp from './RouteApp';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouteApp />
+    <RouteApp aappName="ABC" />
   </React.StrictMode>
 );

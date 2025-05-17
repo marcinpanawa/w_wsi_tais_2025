@@ -7,6 +7,7 @@ var path = require('path');
 require('dotenv').config();
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 const expressLayouts = require("express-ejs-layouts");
@@ -18,6 +19,7 @@ mongoose.connect('mongodb://localhost:27017/', {
 
 var app = express();
 app.use(expressLayouts);
+app.use(cors());
 app.set("layout", "./Layouts/mainLayout");
 // view engine setup
 app.set('views', path.join(__dirname, 'Views'));
