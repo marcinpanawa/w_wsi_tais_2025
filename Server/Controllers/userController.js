@@ -1,6 +1,8 @@
 const User = require('../Models/User');
 const bcrypt = require('bcrypt');
 const saltRounds = process.env.SALT_ROUNDS?process.env.SALT_ROUNDS:10; // Do hashowania haseł
+const jwt = require('jsonwebtoken');
+
 
 exports.logout =  (req, res) => {
   req.session.destroy((err) => {
@@ -36,6 +38,62 @@ exports.login = async (req, res) => {
 }
 
 
+exports.postlogin = async (req, res) => {
+  // const session = req.session;
+  console.log('req', req)
+  try {
+    if (req.body.username) {
+    const user = await User.findOne({ username: req.body.username });
+    if (user && await bcrypt.compare(req.body.password, user.password)) {
+        const payload = {
+            user: {
+                id: user.id // Umieść ID użytkownika w payloadzie tokena
+            }
+        };
+
+        jwt.sign(
+            payload,
+            process.env.SESSION_SECRET, // Pobierz sekret z zmiennych środowiskowych (.env)
+            { expiresIn: 360000 }, // Czas ważności tokena (np. 100 godzin) - dostosuj
+            (err, token) => {
+                if (err) throw err;
+                // Zwróć token w odpowiedzi
+                res.json({ token });
+            }
+        );
+
+    } else {
+      return res.status(400).json({ msg: 'Nieprawidłowe dane logowania' });
+    }
+    }
+    else {
+      return res.status(400).json({ msg: 'Nieprawidłowe dane logowania' });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Błąd logowania' });
+  }
+}
+
+exports.postregister = async (req, res) => {
+  try {
+    if(req.body.username)  {
+    const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+    const user = new User({
+      username: req.body.username,
+      password: hashedPassword
+    });
+    await user.save();
+    return res.status(200).json({ msg: 'Ok' });
+    }
+    else {
+      res.render('register', {  title: 'Register site'});
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Nieprawidłowe dane rejestracji' });
+  }
+}
 
 exports.register = async (req, res) => {
   try {

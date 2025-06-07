@@ -32,4 +32,6 @@ router.post('/register', userController.register);
 router.get('/private', requireLogin, userController.private);
 router.post('/comments', requireLogin, commentController.addComment);
 router.get('/products/:product_id/comments', commentController.getCommentsByProductId);
+router.post('/postlogin', userController.postlogin);
+router.post('/postregister', userController.postregister);
 module.exports = router;

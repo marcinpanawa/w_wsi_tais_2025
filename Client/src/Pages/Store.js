@@ -13,7 +13,7 @@ const Store = (props) => {
     console.log('props',props)
     return (
         <>
-        <h1>Welcome at out Store!</h1>
+        <h1>Welcome at OUR Store!</h1>
         <ul className="list-group w-75">
         {props.items&& props.items.response.map((rest, i) => (
           <Item {...rest} />

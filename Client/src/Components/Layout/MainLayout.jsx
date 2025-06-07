@@ -1,61 +1,94 @@
-import React from 'react'
+import {useContext} from 'react';
 import { Menu } from './Shared/Menu';
 import { AuthButtons } from './Shared/AuthButtons';
 import { WCAG } from './Shared/WCAG';
 import { Footer } from './Shared/Footer';
+import { themeDefault, ThemeContext } from "../../Store/ThemeContext";
+import { CreatedAppContext } from '../../Store/AppContext';
+import { LoginModal } from '../Modals/Login';
+import { RegisterModal } from '../Modals/Register';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-const MainLayout = (props) => (
+const MainLayout = (props) => {
+  const { AppStore, setSession, setModal } = useContext(CreatedAppContext);
 
-    
-        <>
-        {/* <%- include('./Partials/wcag_helper') %> */}
-        <WCAG />
-        <div className="container">
-      <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <div className="col-md-3 mb-2 mb-md-0">
-      </div>
-      {/* <%- include('./Menu') %> */}
-      <Menu />
-      {/* <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-    <li><a href="/" className="nav-link px-2 link-secondary">Home</a></li>
-    <li><a href="/store" className="nav-link px-2">Store</a></li>
-    <li><a href="#" className="nav-link px-2">Pricing</a></li>
-    <li><a href="#" className="nav-link px-2">FAQs</a></li>
-    <li><a href="/about" className="nav-link px-2">About</a></li>
-  </ul> */}
+  window.toast = toast;
 
-      {/* <%- include('./authButtons') %> */}
-      <AuthButtons />
-      {/* <div className="col-md-3 text-end">
+  console.log('CreatedAppContext', AppStore)
 
-    {(props.session && props.session.userId)?
-      <a className="button btn btn-outline-danger me-2" href="/logout">Logout {props.session.userName}</a>
-      :
-      <>
-      <a className="button btn btn-outline-primary me-2" href="/login">Login</a>
-      <a className="button btn btn-primary me-2" href="/register">Sign-up</a>
-      </>
+  const loginFn = (userName, token) => {
+    setSession({
+      session: {
+        loggedIn: true,
+        userName: userName,
+        token: token,
+        exp: 123
+      }
+    })
+  }
 
+  const toggle = (modalName) => {
+    if (modalName === 'login') {
+      setModal({ modal: { login: false } });
     }
 
-  </div> */}
-  
-    </header>
-  </div>
+  }
 
-  
-        <main>
+
+  return (
+    <>
+
+      <WCAG />
+
+      <div className="container">
+        <ThemeContext.Provider value={themeDefault}>
+          <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div className="col-md-3 mb-2 mb-md-0">
+            </div>
+
+            <Menu />
+
+            <AuthButtons />
+
+
+          </header>
+        </ThemeContext.Provider>
+      </div>
+
+
+      <main>
         {/* <%- include('./Partials/header') %> */}
-        <h1>{props.appName?props.appName:'MainLayout'}</h1>
+        <h1>{props.appName ? props.appName : 'MainLayout'}</h1>
+
+
+
+
         {props.children}
 
-        </main>
-        {/* <%- include('./Partials/cookiePolicy') %>
+
+
+
+
+
+      </main>
+      {/* <%- include('./Partials/cookiePolicy') %>
         <%- include('./Partials/footer') %> */}
+      <ThemeContext.Provider value={themeDefault}>
         <Footer />
+      </ThemeContext.Provider>
+
+      {AppStore.modal &&
+        <>
+          <LoginModal isOpen={AppStore.modal.login} toggle={() => toggle('login')} loginFn={(userName, token) => loginFn(userName, token)} />
+          <RegisterModal isOpen={AppStore.modal.register} toggle={() => toggle('login')} loginFn={(userName, token) => loginFn(userName, token)} />
         </>
-    );
+      }
+
+    </>
+  )
+};
 
 
 
