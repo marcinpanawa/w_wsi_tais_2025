@@ -13,13 +13,22 @@ function Card({ title, description }) {
 
 function App() {
   const cardsArray = [
-    { title: "one", description: "description one" },
-    { title: "two", description: "description two" },
-    { title: "three", description: "description three" },
-    { title: "three", description: "description three" },
-    { title: "three", description: "description three" },
-    { title: "three", description: "description three" },
-    { title: "ten", description: "description three" },
+  {
+    "title": "Master of Puppets",
+    "description": "Trzeci album studyjny Metalliki, uznawany za arcydzieło thrash metalu."
+  },
+  {
+    "title": "Painkiller",
+    "description": "Legendarne dzieło Judas Priest z 1990 roku, będące kwintesencją speed metalu."
+  },
+  {
+    "title": "Reign in Blood",
+    "description": "Przełomowy album Slayer, który zdefiniował brutalność w thrash metalu."
+  },
+  {
+    "title": "Paranoid",
+    "description": "Klasyk Black Sabbath, który pomógł stworzyć fundamenty heavy metalu."
+  }
   ];
 //generuj array 20 obiektów z obiektami json  { title, description} tematyka : płyty heavy metal
   return (

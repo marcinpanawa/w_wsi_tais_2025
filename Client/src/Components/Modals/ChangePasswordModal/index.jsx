@@ -8,13 +8,13 @@ import {
 } from "reactstrap";
 import { config } from "../../../config/index";
 
-export const LoginModal = ({
+export const ChangePasswordModal = ({
     size,
     isOpen,
     toggle,
     loginFn,
     cancel,
-    submitText = "Login",
+    submitText = "Register",
     cancelText = "Close",
     primaryStyle = "primary",
     footerInfo,
@@ -23,7 +23,7 @@ export const LoginModal = ({
 
     const loginPostJSON = async (data) => {
         try {
-            const response = await fetch(`${config.backend}${config.endpoints.login}`, {
+            const response = await fetch(`${config.backend}${config.endpoints.register}`, {
                 method: "POST", // or 'PUT'
                 headers: {
                     "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export const LoginModal = ({
                     toggle={toggle}
                     onClick={() => cancel ? cancel() : null}
                 >
-                    Login page
+                    changePassword Modal
                 </ModalHeader>
                 <ModalBody className="text-center">
 
@@ -80,6 +80,10 @@ export const LoginModal = ({
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
+                            <input type="password" className="form-control" id="password" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password repeated</label>
                             <input type="password" className="form-control" id="password" />
                         </div>
                     </form>

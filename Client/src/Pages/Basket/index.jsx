@@ -16,7 +16,7 @@ const CartLine = ({ line }) => (
 
 const Cart = ({ order }) => {
   const { clearOrder } = useContext(CreatedAppContext);
-  
+
 
   const orderCount = order.list ? order.list.length : 0;
   let amountOrder = 0;
@@ -41,15 +41,15 @@ const Cart = ({ order }) => {
         </li>
       </ul>
       <Button
-                        className="btn-accept"
-                        color="primary"
-                        onClick={() => clearOrder()}>Clear cart
-                    </Button>
+        className="btn-accept"
+        color="primary"
+        onClick={() => clearOrder()}>Clear cart
+      </Button>
     </div>
   )
 }
 
-const Basket = () => {
+export const Basket = () => {
   const { AppStore, setOrderDetail, PlaceOrder } = useContext(CreatedAppContext);
 
   return (
@@ -61,8 +61,8 @@ const Basket = () => {
           <form className="needs-validation" noValidate="">
             <div className="row g-3">
               <div className="col-sm-6">
-                <label htmlFor="firstName" className="form-label">First name</label>
-                <input type="text" onChange={setOrderDetail} className="form-control" id="firstName" placeholder="" value={AppStore.order.details.firstName} required="" />
+                <label htmlFor="firstName" required className="form-label">First name</label>
+                <input required={true} type="text" onChange={setOrderDetail} className="form-control required" id="firstName" placeholder="" value={AppStore.order.details.firstName}  />
                 <div className="invalid-feedback">
                   Valid first name is required.
                 </div>
@@ -97,7 +97,7 @@ const Basket = () => {
 
               <div className="col-12">
                 <label htmlFor="address" className="form-label">Address</label>
-                <input type="text" onChange={setOrderDetail} className="form-control" id="address" value={AppStore.order.details.address} placeholder="1234 Main St" required="" />
+                <input type="text" onChange={setOrderDetail} className="form-control" id="address" data-testid="address" value={AppStore.order.details.address} placeholder="1234 Main St" required="" />
                 <div className="invalid-feedback">
                   Please enter your shipping address.
                 </div>
@@ -173,9 +173,9 @@ const Basket = () => {
 
             <hr className="my-4" />
 
-            
+
           </form>
-          <button className="w-100 btn btn-primary btn-lg" onClick={PlaceOrder}>Place an order</button>
+          <button id="placeorder" data-testid="placeorder" disabled={AppStore.order.details.address?false:true} className="w-100 btn btn-primary btn-lg" onClick={PlaceOrder}>Place an order</button>
         </div>
       </div>
 

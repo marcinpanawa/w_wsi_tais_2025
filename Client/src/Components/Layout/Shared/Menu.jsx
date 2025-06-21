@@ -10,5 +10,6 @@ export const Menu =() => (
 <li><a href="#" className="nav-link px-2">FAQs</a></li>
 <li><a href="/about" className="nav-link px-2">About</a></li>
 <li><Link className="nav-link px-2" to="/about">About 2</Link></li>
+<li><Link className="nav-link px-2" to="/basket">Basket</Link></li>
 </ul>
 )

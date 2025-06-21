@@ -7,6 +7,7 @@ import Store from './Pages/Store';
 import Basket from './Pages/Basket';
 import Store2 from './Pages/Store2';
 import About from "./Pages/About"
+import Counter from "./Pages/Counter";
 import MainLayout from "./Components/Layout/MainLayout"
 import { AppContext } from './Store/AppContext';
 
@@ -24,6 +25,7 @@ function RouteApp(props) {
                         <Route path="/store2" element={<Store2 />} />                        
                         <Route path="/basket" element={<Basket />} />                        
                         <Route path="/about" element={<About />} />
+                        <Route path="/counter" element={<Counter />} />                        
                         <Route path='*' element={<ErrorPage />} />
                     </Routes>
 
@@ -35,3 +37,4 @@ function RouteApp(props) {
 }
 
 export default RouteApp;
+

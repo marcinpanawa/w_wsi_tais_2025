@@ -3,10 +3,14 @@ import { Menu } from './Shared/Menu';
 import { AuthButtons } from './Shared/AuthButtons';
 import { WCAG } from './Shared/WCAG';
 import { Footer } from './Shared/Footer';
+
 import { themeDefault, ThemeContext } from "../../Store/ThemeContext";
 import { CreatedAppContext } from '../../Store/AppContext';
 import { LoginModal } from '../Modals/Login';
 import { RegisterModal } from '../Modals/Register';
+
+import { ChangePasswordModal } from '../Modals/ChangePasswordModal';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -60,15 +64,12 @@ const MainLayout = (props) => {
 
       <main>
         {/* <%- include('./Partials/header') %> */}
-        <h1>{props.appName ? props.appName : 'MainLayout'}</h1>
+        {/* <h1>{props.appName ? props.appName : 'MainLayout'}</h1> */}
 
 
 
 
         {props.children}
-
-
-
 
 
 
@@ -83,9 +84,10 @@ const MainLayout = (props) => {
         <>
           <LoginModal isOpen={AppStore.modal.login} toggle={() => toggle('login')} loginFn={(userName, token) => loginFn(userName, token)} />
           <RegisterModal isOpen={AppStore.modal.register} toggle={() => toggle('login')} loginFn={(userName, token) => loginFn(userName, token)} />
+          <ChangePasswordModal isOpen={AppStore.modal.changePassword} toggle={() => toggle('login')} loginFn={(userName, token) => loginFn(userName, token)} />            
         </>
       }
-
+      <ToastContainer />
     </>
   )
 };

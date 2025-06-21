@@ -104,6 +104,9 @@ export const AppContext = ({ children }) => {
         if (session != sessionDefault) {
             setLocalStorageItem('session', session);
         }
+        // if (!session)  {
+        //         //fetch BE - destroy session
+        // }
 
     }, [session])
 
@@ -115,12 +118,37 @@ export const AppContext = ({ children }) => {
         }
     }, [order])
 
+  const handleFetch = async (method, formData) => {
+    const localFetch = fetch;
+    const AppStore = window.AppStore;
+    try {
+      const res = await localFetch('https://catfact.ninja/fact', {
+        
+        method: method?method:'POST',
+        headers: {
+          'Authorization': `Bearer ${AppStore.token?AppStore.token:''}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log('Response data', data)
+      return({data});
+    } catch (err) {
+      return({err});
+    }
+  };
+  
     const AppStore = {
         ...order,
         ...session,
         ...modal,
-        ...settings
+        ...settings,handleFetch        
     }
 
     const addToOrder = (item) => {
@@ -151,7 +179,7 @@ export const AppContext = ({ children }) => {
 
 
     const setOrderDetail = (props, clearDetailArray) => {
-
+console.log('setOrderDetail',props)
         let newOrder = { ...order };
         if (props.target.type != "checkbox" && props.target.type != "radio") newOrder.order.details[props.target.id] = props.target.value
         else {
@@ -173,7 +201,11 @@ export const AppContext = ({ children }) => {
             token: session.token
         }
         orderPostJSON(newOrder);
+        showSwalMessage('Order placed');
     }
+
+if (process.env.NODE_ENV === 'development') window.AppStore = AppStore;
+else window.AppStore = process.env.NODE_ENV
 
     return (
         <CreatedAppContext.Provider value={{ AppStore, setOrder, setSession, setModal, addToOrder, removeFromOrder, setOrderDetail, clearOrder, PlaceOrder }}>
@@ -181,6 +213,9 @@ export const AppContext = ({ children }) => {
         </CreatedAppContext.Provider>
     )
 }
+
+
+
 
 
 
